@@ -24,7 +24,6 @@ def encontrar_ultimo_mes_realizado(df, meses):
 
     return ultimo_mes
 
-
 def calcular_total_ajustado(df, meses):
     """
     Calcula o total ajustado usando a linha TOTAL
@@ -89,6 +88,11 @@ def calcular_total_ajustado_por_grupo(df, meses, itens_grupo):
 
             totais_ajustados[mes_atual] = total
 
+            # Adiciona os meses faltantes com o valor do previsto OPEX
+    for mes in meses:
+        if mes not in totais_ajustados:
+            totais_ajustados[mes] = linhas_grupo[f'{mes}_Previsto_OPEX'].sum()
+
     return totais_ajustados
 
 
@@ -102,7 +106,9 @@ def criar_dataframe_pivot_unitario(df_pivot, fazenda_info):
         'Jun24': fazenda_info['Safra Jun/24'].iloc[0],
         'Jul24': fazenda_info['Safra Jul/24'].iloc[0],
         'Ago24': fazenda_info['Safra Ago/24'].iloc[0],
-        'Set24': fazenda_info['Safra Set/24'].iloc[0]
+        'Set24': fazenda_info['Safra Set/24'].iloc[0],
+        'Out24': fazenda_info['Safra Out/24'].iloc[0],
+        'Nov24': fazenda_info['Safra Nov/24'].iloc[0]
     }
 
     # Cria cópia do DataFrame original
@@ -258,7 +264,6 @@ def extrair_dados(caminho_arquivo, caminho_arquivo_safra):
             }
 
     return dfs
-
 
 # def exportar_resultados(dados, nome_arquivo='resultados.xlsx'):
 #     with pd.ExcelWriter(nome_arquivo) as writer:
