@@ -108,7 +108,8 @@ def criar_dataframe_pivot_unitario(df_pivot, fazenda_info):
         'Ago24': fazenda_info['Safra Ago/24'].iloc[0],
         'Set24': fazenda_info['Safra Set/24'].iloc[0],
         'Out24': fazenda_info['Safra Out/24'].iloc[0],
-        'Nov24': fazenda_info['Safra Nov/24'].iloc[0]
+        'Nov24': fazenda_info['Safra Nov/24'].iloc[0],
+        'Dez24': fazenda_info['Safra Dez/24'].iloc[0]
     }
 
     # Cria cópia do DataFrame original
